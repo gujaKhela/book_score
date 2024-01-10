@@ -6,7 +6,6 @@ function App() {
   return (
     <>
       <AllRoutes />
-      <p className="text-center">Hello Guja</p>
     </>
   );
 }

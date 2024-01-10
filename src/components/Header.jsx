@@ -7,12 +7,11 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <div className="w-11/12 mx-auto h-10 my-8 flex justify-between">
+      <div className="w-11/12 mx-auto h-10 my-10 flex justify-between">
         <div className="flex items-center">
-            <Link to="/">
-            
-          <img src={Logo} alt="site logo" className="w-32 h-6" />
-            </Link>
+          <Link to="/">
+            <img src={Logo} alt="site logo" className="w-32 h-6" />
+          </Link>
         </div>
         <div className="flex items-center	">
           <img src={BookMark} alt="BookMark" className="w-4 h-6 mx-5" />
