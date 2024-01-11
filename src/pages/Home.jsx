@@ -8,7 +8,8 @@ import Search from "../components/Search";
 import fetchData from "../api/fetchData";
 
 const Home = () => {
-  const [newestData, setNewestData] = useState({});
+  const [newestData, setNewestData] = useState({items:[]});
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchNewestData = async () => {
@@ -17,6 +18,8 @@ const Home = () => {
         setNewestData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setError(error.message || "An error occurred while fetching data.");
+
       }
     };
     fetchNewestData();
@@ -63,14 +66,22 @@ const Home = () => {
         {/* output books from api */}
         <p className="text-center text-xl ">New Books</p>
 
-        {newestData.items &&
+        {error ? (
+          <p className="text-center text-red-500">
+            Error fetching data: {error}. Please check your internet connection.
+          </p>
+        ) : newestData.items && newestData.items.length > 0 ? (
           newestData.items.map((myData) => (
             <div key={myData.id}>
               <p>Title: {myData.volumeInfo.title}</p>
               <p>Authors: {myData.volumeInfo.authors.join(", ")}</p>
               {/* Add more details as needed */}
             </div>
-          ))}
+          ))
+        ) : (
+          <p className="text-center text-gray-500">Loading...</p>
+        )}
+        
       </main>
 
       <Footer />
