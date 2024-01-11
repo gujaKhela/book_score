@@ -27,42 +27,35 @@ const Home = () => {
     <>
       <Header />
       <main className="w-11/12 mx-auto ">
-        <div className="flex flex-col sm:flex-row justify-between items-center pt-10">
-          <div className="mb-6 sm:mb-0">
-            <div className="flex items-start flex-col sm:flex-row">
-              <h2 className="font-bold xl:text-5xl md:text-3xl sm:text-xl max-w-[24rem] xl:mb-4 md:mb-2 sm:mb-0">
+        <div className="flex flex-col xl:flex-row 2xl:flex-row lg:flex-row justify-between items-center pt-10">
+          <div className="mb-6 ">
+            <div className="flex items-start flex-col">
+              <h2 className="font-bold xl:text-5xl md:text-3xl max-w-[24rem] xl:mb-4 md:mb-2 ">
                 What Book You Looking For?
               </h2>
-              <img
-                src={BookGif}
-                alt="book gif"
-                className="inline xl:mb-4 md:mb-2 sm:mb-0 sm:w-[40px] sm:h-[40px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px] xl:w-[141px] xl:h-[141px]"
-              />
+              <img src={BookGif} alt="book gif" className="inline " />
             </div>
             <p className="my-4">Explore our Catalog and Find Your Next Read</p>
+
             <Search />
-            <div className="flex items-center mt-6 ">
-              <button className="my-4 m-9 xl:w-40 xl:h-12  lg:w-32 lg:h-8  md:w-22 md:h-4 sm:w-20 sm:h-2 bg-yellow-500 border-2 border-black rounded-lg relative">
-                <div className="xl:pr-14 lg:pr-10 md:pr-4 sm:pr-2">
-                  Explore{" "}
-                </div>
-                <div className="absolute xl:top-3 xl:left-28 lg:top-2 lg:left-20 md:top-1 md:left-12 sm:top-1 sm:left-8">
-                  <PiBinoculars size={24} />{" "}
-                </div>
+            <div className="flex mt-6 relative mb-10 xl:mb-0">
+              <button className=" bg-yellow-500 border-2 border-black rounded-lg w-[154px] h-[52px]">
+                <span className="pr-4">Explore</span>
+                <PiBinoculars size={24} className="absolute top-4 left-28" />
               </button>
-              <span className="text-3xl">-----------------------</span>
+              <div className="w-6/12 mx-auto my-6 border-t-2 border-dashed border-black"></div>
             </div>
           </div>
           {/* ------------------- */}
-          <div className="relative w-full h-full md:w-[96px] md:h-[100px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px]">
-            <div className="w-full h-full md:w-[96px] md:h-[100px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px]">
+          <div className="relative w-full h-full max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px]">
+            <div className="w-full h-full max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px]">
               <img
                 src={Rectangle}
                 alt="Rectangle photo"
-                className="z-10 object-cover w-full h-full"
+                className="z-10 object-cover w-full h-full max-w-[484px] max-h-[503px]"
               />
             </div>
-            <div className="bg-blue-500 object-cover w-full h-full md:w-[96px] md:h-[100px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px] absolute -top-8 -left-8 rounded-bl-3xl rounded-tr-3xl z-[-1]"></div>
+            <div className="bg-blue-500 object-cover w-full h-full max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px] absolute -top-8 -left-8 rounded-bl-3xl rounded-tr-3xl z-[-1]"></div>
           </div>
           {/* ------------------- */}
         </div>
