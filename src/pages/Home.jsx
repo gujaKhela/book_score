@@ -6,7 +6,7 @@ import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
 import Search from "../components/shared/Search";
 import fetchData from "../api/fetchData";
-import Slider from "../components/sliderComponent/Slider";
+import Slider from "../components/sliderComp/Slider";
 import Book from "../components/shared/Book";
 
 const Home = () => {
