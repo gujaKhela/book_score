@@ -8,6 +8,8 @@ const Book = ({src,title,authors}) => {
           src={src}
           alt="book cover"
           className="bg-cover w-full h-full hover:opacity-90"
+          loading="lazy"
+
         />
       </button>
 

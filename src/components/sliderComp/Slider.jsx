@@ -3,7 +3,6 @@ import { MdNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
 
 const Slider = ({ nextSlide, prevSlide }) => {
-    console.log(nextSlide);
   return (
     <div>
       <button className="absolute top-2 right-6" onClick={nextSlide}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BookGif from "../assets/book-gif.png";
-import Rectangle from "../assets/Rectangle 9.jpg";
+import Rectangle from "../assets/Rectangle 9.webp";
 import { PiBinoculars } from "react-icons/pi";
 import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
@@ -65,7 +65,12 @@ const Home = () => {
               <h2 className="font-bold xl:text-5xl md:text-3xl max-w-[24rem] xl:mb-4 md:mb-2 ">
                 What Book You Looking For?
               </h2>
-              <img src={BookGif} alt="book gif" className="inline " />
+              <img
+                src={BookGif}
+                alt="book gif"
+                className="w-[141px] h-[141px] "
+                loading="lazy"
+              />
             </div>
             <p className="my-4">Explore our Catalog and Find Your Next Read</p>
 
@@ -85,6 +90,7 @@ const Home = () => {
                 src={Rectangle}
                 alt="Rectangle photo"
                 className="z-10 object-cover w-full h-full max-w-[484px] max-h-[503px]"
+                loading="lazy"
               />
             </div>
             <div className="bg-blue-500 object-cover w-full h-full max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px] absolute -top-8 -left-8 rounded-bl-3xl rounded-tr-3xl z-[-1]"></div>
