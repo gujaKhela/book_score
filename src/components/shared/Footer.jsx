@@ -1,6 +1,6 @@
 import React from "react";
 import LineSeperatorDashes from "./LineSeperatorDashes";
-import Logo from "../assets/LOGO.png";
+import Logo from "../../assets/LOGO.png";
 import { Link } from "react-router-dom";
 import { FiGithub } from "react-icons/fi";
 import { AiOutlineLinkedin } from "react-icons/ai";

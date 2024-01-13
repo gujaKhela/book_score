@@ -1,7 +1,7 @@
 import React from "react";
-import Logo from "../assets/LOGO.png";
-import BookMark from "../assets/BOOKMARK_SIMPLE.png";
-import shoppingCart from "../assets/SHOPPING_CART.png";
+import Logo from "../../assets/LOGO.png";
+import BookMark from "../../assets/BOOKMARK_SIMPLE.png";
+import shoppingCart from "../../assets/SHOPPING_CART.png";
 import { Link } from "react-router-dom";
 
 const Header = () => {
