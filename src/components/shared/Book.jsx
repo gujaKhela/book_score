@@ -1,15 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import bookBackupImage  from "../../assets/bookBackup.webp"
 
-const Book = ({src,title,authors}) => {
+const Book = ({ id, src, title, authors }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/details`, {state:{"id":id,"src":src,"title":title,"authors":authors}});
+  };
+
   return (
-    <div className="" >
-      <button className="w-[160px] h-[220px]">
+    <div className="">
+      <button className="w-[160px] h-[220px]" onClick={handleClick}>
         <img
-          src={src}
+          src={src ? src: bookBackupImage}
           alt="book cover"
           className="bg-cover w-full h-full hover:opacity-90"
           loading="lazy"
-
         />
       </button>
 

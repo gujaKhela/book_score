@@ -13,7 +13,7 @@ const Home = () => {
   const [newestData, setNewestData] = useState({ items: [] });
   const [error, setError] = useState(null);
   // slideris
-  const [sliderValue, setSliderValue] = useState(1);
+  const [sliderValue, setSliderValue] = useState(0);
   //slideristvis
   const calculateBooksToShow = () => {
     const width = window.screen.width;
@@ -113,6 +113,7 @@ const Home = () => {
                   //aq unda chavsvat book elementi
                   <Book
                     key={myData.id}
+                    id={myData.id}
                     src={myData.volumeInfo.imageLinks.thumbnail}
                     title={myData.volumeInfo.title}
                     authors={myData.volumeInfo.authors.join(", ")}
@@ -120,7 +121,6 @@ const Home = () => {
                 ))}
             </div>
             <Slider nextSlide={nextSlide} prevSlide={prevSlide} />
-            {/* Sider --- ends here  */}
           </div>
         ) : (
           <p className="text-center text-gray-500">Loading...</p>
