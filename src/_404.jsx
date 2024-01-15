@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { LuAlertTriangle } from "react-icons/lu";
-import Footer from "../components/shared/Footer";
+import Footer from "./components/shared/Footer";
 
 const NotFound = () => {
   return (
     <div className="text-center mt-8 	">
-     <p className="text-2xl font-semibold">404 - Not Found</p> 
+      <p className="text-2xl font-semibold">404 - Not Found</p>
       <div className="">
         <LuAlertTriangle size={280} className="m-auto" />
         <p className="text-lg">something went wrong</p>

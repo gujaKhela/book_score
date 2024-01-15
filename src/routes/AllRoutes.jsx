@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
-import NotFound from "../pages/_error"
+import NotFound from "../_404";
 import { About } from "../pages/About";
 
 import { Details } from "../pages/Details";
@@ -15,7 +15,6 @@ export const AllRoutes = () => {
         <Route path="/details" element={<Details />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      
     </>
   );
 };
