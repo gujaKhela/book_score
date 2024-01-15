@@ -42,17 +42,26 @@ const Search = () => {
     }
   };
 
+  useEffect(() => {
+    if (searchQuery !== undefined && searchQuery !== "") {
+      const timeoutId = setTimeout(() => {
+        fetchMyData();
+      }, 500);
+
+      // Cleanup the timeout on component unmount or when searchQuery changes
+      return () => clearTimeout(timeoutId);
+    }
+  }, [searchQuery]);
+
   const handleSearchButtonClick = () => {
     // Trigger search when the button is clicked
     fetchMyData();
-    console.log("here triggered");
   };
 
   const handleEnterPress = (e) => {
     if (e.key === "Enter") {
       // Trigger search when the Enter key is pressed
       fetchMyData();
-      console.log("entered");
     }
   };
 
@@ -75,47 +84,49 @@ const Search = () => {
         </button>
         <div className="bg-yellow-500 rounded-full absolute top-2 left-1 z-[-1] md:w-[520px] md:h-[42px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-      {searchedResults && (
-        <div
-          ref={searchContainerRef}
-          className={`absolute bg-yellow-500 rounded-xl transition-opacity opacity-${
-            searchedResults ? "100" : "0"
-          }  xl:w-[520px] xl:h-[400px] `}
-        >
-          <span className="flex flex-col md:flex-row gap-4">
-            {searchedResults.totalItems &&
-            searchedResults &&
-            searchedResults.items ? (
-              searchedResults.items.map((search) => (
-                <Book
-                  key={search.id}
-                  id={search.id}
-                  title={search.volumeInfo.title || "Untitled"}
-                  authors={
-                    search.volumeInfo.authors
-                      ? search.volumeInfo.authors.join(", ")
-                      : "Antiquary"
-                  }
-                  src={
-                    search.volumeInfo.imageLinks
-                      ? search.volumeInfo.imageLinks.thumbnail ||
-                        search.volumeInfo.imageLinks.smallThumbnail ||
-                        null
-                      : null
-                  }
-                />
-              ))
-            ) : (
-              <p className="font-semibold text-xl mx-auto mt-5">No result ..</p>
-            )}
-          </span>
-          {searchedResults.totalItems ? (
-            <button className="px-0 py-2 bottom-0 left-28 bg-blue-500 text-white rounded hover:bg-blue-600 absolute md:left-48 ">
-              More Results
-            </button>
-          ) : null}
-        </div>
-      )}  
+        {searchedResults && (
+          <div
+            ref={searchContainerRef}
+            className={`absolute bg-yellow-500 rounded-xl transition-opacity opacity-${
+              searchedResults ? "100" : "0"
+            }  xl:w-[520px] xl:h-[400px] `}
+          >
+            <span className="flex flex-col md:flex-row gap-4">
+              {searchedResults.totalItems &&
+              searchedResults &&
+              searchedResults.items ? (
+                searchedResults.items.map((search) => (
+                  <Book
+                    key={search.id}
+                    id={search.id}
+                    title={search.volumeInfo.title || "Untitled"}
+                    authors={
+                      search.volumeInfo.authors
+                        ? search.volumeInfo.authors.join(", ")
+                        : "Antiquary"
+                    }
+                    src={
+                      search.volumeInfo.imageLinks
+                        ? search.volumeInfo.imageLinks.thumbnail ||
+                          search.volumeInfo.imageLinks.smallThumbnail ||
+                          null
+                        : null
+                    }
+                  />
+                ))
+              ) : (
+                <p className="font-semibold text-xl mx-auto mt-5">
+                  No result ..
+                </p>
+              )}
+            </span>
+            {searchedResults.totalItems ? (
+              <button className="px-0 py-2 bottom-0 left-28 bg-blue-500 text-white rounded hover:bg-blue-600 absolute md:left-48 ">
+                More Results
+              </button>
+            ) : null}
+          </div>
+        )}
       </div>
     </>
   );

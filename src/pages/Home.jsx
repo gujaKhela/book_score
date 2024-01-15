@@ -76,7 +76,7 @@ const Home = () => {
 
             <Search />
             <div className="flex mt-6 relative mb-10 xl:mb-0">
-              <button className=" bg-yellow-500 border-2 border-black rounded-lg w-[154px] h-[52px]">
+              <button className=" bg-yellow-500 border-2 border-black rounded-lg w-[154px] h-[52px] hover:bg-yellow-400">
                 <span className="pr-4">Explore</span>
                 <PiBinoculars size={24} className="absolute top-4 left-28" />
               </button>
