@@ -8,13 +8,13 @@ import { Details } from "../pages/Details";
 
 export const AllRoutes = () => {
   return (
-    <>
+  
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/details" element={<Details />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+  
   );
 };
