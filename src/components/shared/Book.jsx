@@ -15,7 +15,7 @@ const Book = ({ id, src, title, authors }) => {
         <img
           src={src ? src: bookBackupImage}
           alt="book cover"
-          className="bg-cover w-full h-full hover:opacity-90"
+          className="bg-cover w-full h-full hover:opacity-85"
           loading="lazy"
         />
       </button>

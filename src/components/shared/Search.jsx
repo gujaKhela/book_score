@@ -73,7 +73,7 @@ const Search = () => {
         >
           <HiMiniMagnifyingGlass size={26} className="  z-10" />
         </button>
-        <div className="bg-yellow-500 rounded-full absolute top-2 left-1 z-[-1] xl:w-[520px] xl:h-[42px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="bg-yellow-500 rounded-full absolute top-2 left-1 z-[-1] md:w-[520px] md:h-[42px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
       {searchedResults && (
         <div
@@ -82,7 +82,7 @@ const Search = () => {
             searchedResults ? "100" : "0"
           }  xl:w-[520px] xl:h-[400px] `}
         >
-          <span className="flex gap-4">
+          <span className="flex flex-col md:flex-row gap-4">
             {searchedResults.totalItems &&
             searchedResults &&
             searchedResults.items ? (
@@ -110,7 +110,7 @@ const Search = () => {
             )}
           </span>
           {searchedResults.totalItems ? (
-            <button className="mt-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 absolute left-48">
+            <button className="px-0 py-2 bottom-0 left-28 bg-blue-500 text-white rounded hover:bg-blue-600 absolute md:left-48 ">
               More Results
             </button>
           ) : null}
