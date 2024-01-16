@@ -1,24 +1,25 @@
 import React from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useParams,useLocation,useNavigate } from "react-router-dom";
 
 export const Details = () => {
+ 
   const location = useLocation();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id,src,title,authors } = useParams();
 
-  if (!location.state) {
+  if (!id || !src||!title||!authors) {
     // Handle the case where state is not available
     return <div>Error: Details not available</div>;
   }
 
+
+
   const handleBack = () => {
     navigate(-1, { state: location.state });
   };
-
-  const { src, title, author } = location.state;
+  
 
   document.title = title;
-  console.log(location);
 
   return (
     <div>

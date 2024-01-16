@@ -1,10 +1,13 @@
-const fetchData = async (search, orderBy, maxResults) => {
+const fetchData = async (search, orderBy, maxResults,printType) => {
     search = search || "a";
     orderBy = orderBy || "relevance";
     maxResults = maxResults || 10;
+    
   try {
+    console.log('API Request URL:', `https://www.googleapis.com/books/v1/volumes?q=${search}&orderBy=${orderBy}&maxResults=${maxResults}${printType ? `&printType=${printType}` : ''}&key=${import.meta.env.VITE_API_KEY}`);
+
     const resp = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${search}&orderBy=${orderBy}&maxResults=${maxResults}&key=${
+      `https://www.googleapis.com/books/v1/volumes?q=${search}&orderBy=${orderBy}&maxResults=${maxResults}${printType ? `&printType=${printType}` : ''}&key=${
         import.meta.env.VITE_API_KEY
       }`
     );

@@ -44,7 +44,7 @@ const Home = () => {
   useEffect(() => {
     const fetchNewestData = async () => {
       try {
-        const data = await fetchData("a", "newest", 16);
+        const data = await fetchData("a", "newest", 16,"books");
         setNewestData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
