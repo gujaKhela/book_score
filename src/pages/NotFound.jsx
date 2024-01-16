@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { LuAlertTriangle } from "react-icons/lu";
-import Footer from "./components/shared/Footer";
+import Footer from "../components/shared/Footer";
 
 const NotFound = () => {
   return (
