@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useNavigate,useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 export const Details = () => {
   const location = useLocation();
@@ -12,7 +12,7 @@ export const Details = () => {
   }
 
   const handleBack = () => {
-    navigate(-1);
+    navigate(-1, { state: location.state });
   };
 
   const { src, title, author } = location.state;
