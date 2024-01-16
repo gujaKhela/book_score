@@ -31,7 +31,7 @@ const Search = () => {
   const fetchMyData = async () => {
     setLoading(true);
     try {
-      const data = await fetchData(searchQuery, null, 3,"books");
+      const data = await fetchData(searchQuery, null, 3,"books","romance");
       setSearchedResults(data);
     } catch (error) {
       console.error("Error fetching data:", error);

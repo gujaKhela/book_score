@@ -8,6 +8,7 @@ import Search from "../components/shared/Search";
 import fetchData from "../api/fetchData";
 import Slider from "../components/sliderComp/Slider";
 import Book from "../components/shared/Book";
+import BookCategories from "../components/categories/BookCategory";
 
 const Home = () => {
   const [newestData, setNewestData] = useState({ items: [] });
@@ -44,7 +45,7 @@ const Home = () => {
   useEffect(() => {
     const fetchNewestData = async () => {
       try {
-        const data = await fetchData("a", "newest", 16,"books");
+        const data = await fetchData(null, "newest", 40, "books");
         setNewestData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -59,7 +60,7 @@ const Home = () => {
     <>
       <Header />
       <main className="w-11/12 mx-auto ">
-        <div className="flex flex-col xl:flex-row 2xl:flex-row lg:flex-row justify-between items-center py-10">
+        <div className="flex flex-col xl:flex-row 2xl:flex-row lg:flex-row justify-between items-center py-10 mb-32">
           <div className="mb-6 ">
             <div className="flex items-start flex-col">
               <h2 className="font-bold xl:text-5xl md:text-3xl max-w-[24rem] xl:mb-4 md:mb-2 ">
@@ -90,7 +91,6 @@ const Home = () => {
                 src={Rectangle}
                 alt="Rectangle photo"
                 className="z-10 object-cover w-full h-full max-w-[484px] max-h-[503px]"
-               
               />
             </div>
             <div className="bg-blue-500 object-cover w-full h-full max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px] absolute -top-8 -left-8 rounded-bl-3xl rounded-tr-3xl z-[-1]"></div>
@@ -104,13 +104,12 @@ const Home = () => {
             Error fetching data: {error}. Please check your internet connection.
           </p>
         ) : newestData.items && newestData.items.length > 0 ? (
-          <div className=" outline-dashed outline-2 outline-offset-2 rounded-lg relative overflow-hidden">
+          <div className=" outline-dashed outline-2 outline-offset-2 rounded-lg relative overflow-hidden ">
             <p className="text-center text-xl mt-2 font-semibold">New Books</p>
             <div className=" h-[400px] flex flex-row px-4 gap-10 justify-start items-center ">
               {newestData.items
                 .slice(sliderValue, sliderValue + calculateBooksToShow())
                 .map((myData) => (
-                  //aq unda chavsvat book elementi
                   <Book
                     key={myData.id}
                     id={myData.id}
@@ -125,6 +124,10 @@ const Home = () => {
         ) : (
           <p className="text-center text-gray-500">Loading...</p>
         )}
+
+        <div className="mt-64">
+          <BookCategories />
+        </div>
       </main>
 
       <Footer />
