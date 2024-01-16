@@ -6,7 +6,7 @@ const Book = ({ id, src, title, authors }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/details`, {state:{"id":id,"src":src,"title":title,"authors":authors}});
+    navigate(`/details/${id}`, {state:{"src":src,"title":title,"authors":authors}});
   };
 
   return (

@@ -12,7 +12,7 @@ export const AllRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/details" element={<Details />} />
+        <Route path="/details/:id" element={<Details />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
   
