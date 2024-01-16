@@ -90,7 +90,7 @@ const Home = () => {
                 src={Rectangle}
                 alt="Rectangle photo"
                 className="z-10 object-cover w-full h-full max-w-[484px] max-h-[503px]"
-                loading="lazy"
+               
               />
             </div>
             <div className="bg-blue-500 object-cover w-full h-full max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px] absolute -top-8 -left-8 rounded-bl-3xl rounded-tr-3xl z-[-1]"></div>
