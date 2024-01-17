@@ -2,60 +2,19 @@ import React, { useEffect, useState } from "react";
 import BookGif from "../assets/book-gif.png";
 import Rectangle from "../assets/Rectangle 9.webp";
 import { PiBinoculars } from "react-icons/pi";
+import Slider from "../components/shared/Slider"
 import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
 import Search from "../components/shared/Search";
-import fetchData from "../api/fetchData";
-import Slider from "../components/sliderComp/Slider";
-import Book from "../components/shared/Book";
+
 import BookCategories from "../components/categories/BookCategory";
 
+
+
+// ra unda gaadvcet Searchs? eseni search,orderBY,maxResult,printType,subject
+
 const Home = () => {
-  const [newestData, setNewestData] = useState({ items: [] });
-  const [error, setError] = useState(null);
-  // slideris
-  const [sliderValue, setSliderValue] = useState(0);
-  //slideristvis
-  const calculateBooksToShow = () => {
-    const width = window.screen.width;
-    // const width = window.innerWidth;
-    if (width >= 1200) {
-      return 8;
-    } else if (width >= 768) {
-      return 6;
-    } else {
-      return 3;
-    }
-  };
-
-  const nextSlide = () => {
-    setSliderValue((prevValue) =>
-      prevValue + calculateBooksToShow() < newestData.items.length
-        ? prevValue + 1
-        : prevValue
-    );
-  };
-
-  function prevSlide() {
-    setSliderValue((prevValue) =>
-      prevValue - 1 >= 0 ? prevValue - 1 : prevValue
-    );
-  }
-
-  useEffect(() => {
-    const fetchNewestData = async () => {
-      try {
-        const data = await fetchData(null, "newest", 40, "books");
-        setNewestData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setError(error.message || "An error occurred while fetching data.");
-      }
-    };
-    fetchNewestData();
-  }, []);
-
-  console.log(newestData, "newestData");
+  
   return (
     <>
       <Header />
@@ -73,9 +32,9 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
+            <Search />
             <p className="my-4">Explore our Catalog and Find Your Next Read</p>
 
-            <Search />
             <div className="flex mt-6 relative mb-10 xl:mb-0">
               <button className=" bg-yellow-500 border-2 border-black rounded-lg w-[154px] h-[52px] hover:bg-yellow-400">
                 <span className="pr-4">Explore</span>
@@ -98,36 +57,15 @@ const Home = () => {
         </div>
 
         {/* output books from api */}
+        <Slider sliderTitle="New Books"  search="a"orderBY="newest" maxResult="10" printType="books" />
 
-        {error ? (
-          <p className="text-center text-red-500">
-            Error fetching data: {error}. Please check your internet connection.
-          </p>
-        ) : newestData.items && newestData.items.length > 0 ? (
-          <div className=" outline-dashed outline-2 outline-offset-2 rounded-lg relative overflow-hidden ">
-            <p className="text-center text-xl mt-2 font-semibold">New Books</p>
-            <div className=" h-[400px] flex flex-row px-4 gap-10 justify-start items-center ">
-              {newestData.items
-                .slice(sliderValue, sliderValue + calculateBooksToShow())
-                .map((myData) => (
-                  <Book
-                    key={myData.id}
-                    id={myData.id}
-                    src={myData.volumeInfo.imageLinks.thumbnail}
-                    title={myData.volumeInfo.title}
-                    authors={myData.volumeInfo.authors.join(", ")}
-                  />
-                ))}
-            </div>
-            <Slider nextSlide={nextSlide} prevSlide={prevSlide} />
-          </div>
-        ) : (
-          <p className="text-center text-gray-500">Loading...</p>
-        )}
 
-        <div className="mt-64">
+
+        <div className="mt-40">
           <BookCategories />
         </div>
+
+   
       </main>
 
       <Footer />

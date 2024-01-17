@@ -31,7 +31,13 @@ const Search = () => {
   const fetchMyData = async () => {
     setLoading(true);
     try {
-      const data = await fetchData(searchQuery, null, 3,"books","romance");
+      const data = await fetchData(
+        searchQuery,
+        "relevance",
+        3,
+        "books",
+        "romance"
+      );
       setSearchedResults(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -66,6 +72,9 @@ const Search = () => {
 
   return (
     <>
+      <p className="text-xl font-semibold pl-2 pb-4">
+        Search by Title or Author
+      </p>
       <div className="relative z-50 rounded-full xl:w-[520px] xl:h-[42px] group">
         <input
           type="text"
@@ -79,7 +88,7 @@ const Search = () => {
           onClick={handleSearchButtonClick}
           className="z-10 absolute top-0 left-[266px] md:top-0 md:left-[344px] xl:top-2 xl:left-[470px] 2xl:top-2 2xl:left-[470px] "
         >
-          <HiMiniMagnifyingGlass size={26} className="  z-10" />
+          <HiMiniMagnifyingGlass size={26} className="z-10" />
         </button>
         <div className="bg-yellow-500 rounded-full absolute top-2 left-1 z-[-1] md:w-[520px] md:h-[42px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
