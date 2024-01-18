@@ -7,7 +7,7 @@ const BookCategories = () => {
   const [clickCategory, setClickCategory] = useState("");
 
   const categories = [
-    "Political",
+    "Comedy",
     "Science",
     "Fiction",
     "Psychology",
@@ -53,10 +53,10 @@ const BookCategories = () => {
       </div>
       <div className="mt-40">
         <Slider
-          subject={clickCategory}
+          subject={clickCategory ||"Comedy"}
           maxResult={12}
           orderBY="newest"
-          sliderTitle={clickCategory}
+          sliderTitle={clickCategory ||"Comedy"}
         />
       </div>
     </>

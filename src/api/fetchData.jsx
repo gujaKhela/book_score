@@ -33,6 +33,13 @@ const fetchData = async (search, orderBy, maxResults, printType, subject) => {
     }
 
     const result = await resp.json();
+
+    result.items.forEach((item) => {
+      if (item.volumeInfo && item.volumeInfo.imageLinks) {
+        item.volumeInfo.imageLinks.smallThumbnail = item.volumeInfo.imageLinks.smallThumbnail.replace(/^http:\/\//i, 'https://');
+        item.volumeInfo.imageLinks.thumbnail = item.volumeInfo.imageLinks.thumbnail.replace(/^http:\/\//i, 'https://');
+      }
+    });
     return result;
   } catch (error) {
     console.error("Error fetching data:", error);

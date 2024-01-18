@@ -2,11 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import bookBackupImage  from "../../assets/bookBackup.webp"
 
-const Book = ({ id, src, title, authors }) => {
+const Book = ({ id, src, title, authors,description }) => {
   const navigate = useNavigate();
-
+  const tempPrice = 15;
   const handleClick = () => {
-    const url = `/details/${id}/${encodeURIComponent(src)}/${title}/${authors}`;
+    const url = `/details/${id}/${encodeURIComponent(src)}/${title}/${authors}/${description}/${tempPrice}`;
     navigate(url);
   };
 
@@ -33,6 +33,8 @@ const Book = ({ id, src, title, authors }) => {
           <strong>Authors: </strong> {authors}
         </p>
       </div>
+
+
       {/* Add more details as needed */}
     </div>
   );
