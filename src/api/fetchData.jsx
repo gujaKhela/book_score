@@ -8,7 +8,7 @@ const fetchData = async (search, orderBy, maxResults, printType, subject) => {
   }
 
 
-  orderBy === "newest" ? "newest" : "relevance";
+  orderBy = orderBy === "newest" ? "newest" : "relevance"; // Corrected line
   maxResults = maxResults || 10;
 
   try {

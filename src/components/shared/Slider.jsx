@@ -3,11 +3,16 @@ import fetchData from "../../api/fetchData";
 import { MdNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
 import Book from "./Book";
-import backapImage from "../../assets/bookBackup.webp"
+import backapImage from "../../assets/bookBackup.webp";
 
-
-
-const Slider = ({ sliderTitle,search, orderBY, maxResult, printType, subject }) => {
+const Slider = ({
+  sliderTitle,
+  search,
+  orderBY,
+  maxResult,
+  printType,
+  subject,
+}) => {
   const [newestData, setNewestData] = useState({ items: [] });
   const [error, setError] = useState(null);
   // slideris
@@ -68,7 +73,9 @@ const Slider = ({ sliderTitle,search, orderBY, maxResult, printType, subject }) 
         </p>
       ) : newestData.items && newestData.items.length > 0 ? (
         <div className=" outline-dashed outline-2 outline-offset-2 rounded-lg relative overflow-hidden ">
-          <p className="text-center text-xl mt-2 font-semibold">{sliderTitle? sliderTitle : "books"}</p>
+          <p className="text-center text-xl mt-2 font-semibold">
+            {sliderTitle ? sliderTitle : "books"}
+          </p>
           <div className=" h-[400px] flex flex-row px-4 gap-10 justify-start items-center ">
             {newestData.items
               .slice(sliderValue, sliderValue + calculateBooksToShow())
@@ -82,10 +89,20 @@ const Slider = ({ sliderTitle,search, orderBY, maxResult, printType, subject }) 
                     backapImage
                   }
                   title={myData.volumeInfo.title}
-                  authors={myData.volumeInfo.authors && myData.volumeInfo.authors.length === 1
-                    ? myData.volumeInfo.authors[0]
-                    : myData.volumeInfo.authors ? myData.volumeInfo.authors.join(", ") : ""}
-                  
+                  authors={
+                    myData.volumeInfo.authors &&
+                    myData.volumeInfo.authors.length === 1
+                      ? myData.volumeInfo.authors[0]
+                      : myData.volumeInfo.authors
+                      ? myData.volumeInfo.authors.join(", ")
+                      : ""
+                  }
+                  description={
+                    myData.volumeInfo.description
+                      ? myData.volumeInfo.description
+                      : "no description to show"
+                  }
+                  categories={myData.volumeInfo.categories || "Uncategory"}
                 />
               ))}
           </div>

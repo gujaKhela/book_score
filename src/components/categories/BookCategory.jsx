@@ -12,8 +12,6 @@ const BookCategories = () => {
     "Fiction",
     "Psychology",
     "Mind",
-    "Spirit",
-    "Medical",
     "Biography",
     "Mathematics",
     "Religion",
@@ -22,7 +20,6 @@ const BookCategories = () => {
     "Romance",
     "Thriller",
     "Horror",
-    "Mystery",
     "Fantasy",
     "Adventure",
   ];
