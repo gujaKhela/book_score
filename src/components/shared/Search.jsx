@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
+import { useLocation } from "react-router-dom";
 import Book from "./Book";
 import fetchData from "../../api/fetchData";
 
@@ -8,6 +9,11 @@ const Search = () => {
   const [searchedResults, setSearchedResults] = useState("");
   const [loading, setLoading] = useState(false);
   const searchContainerRef = useRef(null);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+  const isCatalog = location.pathname === "/catalog";
+  console.log("Location pathname:", location.pathname);
+
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -28,13 +34,13 @@ const Search = () => {
     };
   }, []);
 
-  const fetchMyData = async () => {
+  const fetchMyData = async (resultCount) => {
     setLoading(true);
     try {
       const data = await fetchData(
         searchQuery,
         "relevance",
-        3,
+        resultCount,
         "books",
         "romance"
       );
@@ -48,33 +54,39 @@ const Search = () => {
   };
 
   useEffect(() => {
-    if (searchQuery !== undefined && searchQuery !== "") {
+    const resultCount = isHome ? 3 : 10;
+  
+    if (searchQuery.trim() !== "") {
       const timeoutId = setTimeout(() => {
-        fetchMyData();
+        fetchMyData(resultCount);
       }, 500);
-
+  
       // Cleanup the timeout on component unmount or when searchQuery changes
       return () => clearTimeout(timeoutId);
     }
   }, [searchQuery]);
+  
 
   const handleSearchButtonClick = () => {
     // Trigger search when the button is clicked
-    fetchMyData();
+    const resultCount = isHome ? 3 : 10;
+    console.log('isHome:', isHome); // Add this line for debugging
+    console.log('resultCount:', resultCount); // Add this line for debugging
+    fetchMyData(resultCount);
   };
-
+  
   const handleEnterPress = (e) => {
     if (e.key === "Enter") {
       // Trigger search when the Enter key is pressed
-      fetchMyData();
+      const resultCount = isHome ? 3 : 10;
+      console.log('isHome:', isHome); // Add this line for debugging
+      console.log('resultCount:', resultCount); // Add this line for debugging
+      fetchMyData(resultCount);
     }
   };
 
   return (
     <>
-      <p className="text-xl font-semibold pl-2 pb-4">
-        Search by Title or Author
-      </p>
       <div className="relative z-50 rounded-full xl:w-[520px] xl:h-[42px] group">
         <input
           type="text"
@@ -92,7 +104,7 @@ const Search = () => {
         </button>
         <div className="bg-yellow-500 rounded-full absolute top-2 left-1 z-[-1] md:w-[520px] md:h-[42px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-        {searchedResults && (
+        {isHome && searchedResults && (
           <div
             ref={searchContainerRef}
             className={`absolute bg-yellow-500 rounded-xl transition-opacity opacity-${
@@ -136,6 +148,13 @@ const Search = () => {
           </div>
         )}
       </div>
+      {isCatalog && searchedResults && searchedResults.items && (
+        <div>
+          {searchedResults.items.map((search) => (
+            <div key={search.id}>{search.volumeInfo.title}</div>
+          ))}
+        </div>
+      )}
     </>
   );
 };

@@ -2,19 +2,15 @@ import React, { useEffect, useState } from "react";
 import BookGif from "../assets/book-gif.png";
 import Rectangle from "../assets/Rectangle 9.webp";
 import { PiBinoculars } from "react-icons/pi";
-import Slider from "../components/shared/Slider"
+import { Link } from "react-router-dom";
+import Slider from "../components/shared/Slider";
 import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
 import Search from "../components/shared/Search";
 
 import BookCategories from "../components/categories/BookCategory";
 
-
-
-// ra unda gaadvcet Searchs? eseni search,orderBY,maxResult,printType,subject
-
 const Home = () => {
-  
   return (
     <>
       <Header />
@@ -32,14 +28,19 @@ const Home = () => {
                 loading="lazy"
               />
             </div>
+            <p className="text-xl font-semibold pl-2 pb-4">
+              Search by Title or Author
+            </p>
             <Search />
             <p className="my-4">Explore our Catalog and Find Your Next Read</p>
 
             <div className="flex mt-6 relative mb-10 xl:mb-0">
-              <button className=" bg-yellow-500 border-2 border-black rounded-lg w-[154px] h-[52px] hover:bg-yellow-400">
-                <span className="pr-4">Explore</span>
-                <PiBinoculars size={24} className="absolute top-4 left-28" />
-              </button>
+              <Link to="/catalog">
+                <button className=" bg-yellow-500 border-2 border-black rounded-lg w-[154px] h-[52px] hover:bg-yellow-400">
+                  <span className="pr-4">Explore</span>
+                  <PiBinoculars size={24} className="absolute top-4 left-28" />
+                </button>
+              </Link>
               <div className="w-6/12 mx-auto my-6 border-t-2 border-dashed border-black"></div>
             </div>
           </div>
@@ -57,15 +58,17 @@ const Home = () => {
         </div>
 
         {/* output books from api */}
-        <Slider sliderTitle="New Books"  search="a"orderBY="newest" maxResult="10" printType="books" />
-
-
+        <Slider
+          sliderTitle="New Books"
+          search="a"
+          orderBY="newest"
+          maxResult="10"
+          printType="books"
+        />
 
         <div className="mt-40">
           <BookCategories />
         </div>
-
-   
       </main>
 
       <Footer />

@@ -1,7 +1,23 @@
-import React from 'react'
+import React from "react";
+import Header from "../components/shared/Header";
+import Footer from "../components/shared/Footer";
+import Search from "../components/shared/Search";
 
-export const Catalog = () => {
+const Catalog = () => {
   return (
-    <div>Catalog</div>
-  )
-}
+    <>
+      <Header />
+      <main className="w-11/12 mx-auto">
+
+        <p>guja</p>
+
+        <div>
+            <Search />
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+export default Catalog;
