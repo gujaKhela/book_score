@@ -3,6 +3,7 @@ import Footer from "../components/shared/Footer";
 import { BsCart } from "react-icons/bs";
 import { GrFormPrevious } from "react-icons/gr";
 import Slider from "../components/shared/Slider";
+import bookBackup from "../assets/bookBackup.webp";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -15,7 +16,7 @@ export const Details = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  if (!id || !src || !title || !authors || !description) {
+  if (!id || !title || !authors || !description) {
     // Handle the case where state is not available
     return <div>Error: Details not available</div>;
   }
@@ -38,6 +39,7 @@ export const Details = () => {
     setPrice(() => tempPrice * (count + 1));
   };
 
+
   return (
     <>
       <Header />
@@ -49,12 +51,20 @@ export const Details = () => {
         </button>
 
         <div className="flex flex-col space-x-40 md:flex-row">
-          <div className="min-w-[150px] max-h-[180px] md:min-w-[200px] md:min-h-[270px] xl:min-w-[280px] min-h-[300px] mb-10 ">
-            <img
-              src={src}
-              alt="book image"
-              className="w-full h-full bg-cover border rounded-xl"
-            />
+          <div className="min-w-[150px] max-h-[180px] md:min-w-[200px] md:min-h-[270px] xl:min-w-[236px] xl:min-h-[325px] mb-10 ">
+            {src ? (
+              <img
+                src={src}
+                alt="book image"
+                className="w-full h-full bg-cover border rounded-xl"
+              />
+            ) : (
+              <img
+                src={bookBackup}
+                alt="fallback book image"
+                className="w-full h-full bg-cover border rounded-xl"
+              />
+            )}
           </div>
 
           <div>
