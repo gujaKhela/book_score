@@ -63,7 +63,6 @@ const Slider = ({
     fetchNewestData();
   }, [subject]);
 
-  console.log(newestData, "newestData");
 
   return (
     <div>

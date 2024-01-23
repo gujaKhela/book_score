@@ -25,7 +25,6 @@ const Catalog = () => {
     setFilterOpen(false);
   }
 
-  console.log(filter);
   return (
     <>
       <Header />

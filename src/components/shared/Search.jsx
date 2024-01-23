@@ -87,7 +87,7 @@ const Search = ({ filter }) => {
   return (
     <>
       <div
-        className={`relative z-50 rounded-full md:w-[520px] md:h-[42px] xl:w-[520px] xl:h-[42px] group ${
+        className={`relative z-40 rounded-full md:w-[520px] md:h-[42px] xl:w-[520px] xl:h-[42px] group ${
           isCatalog ? "mx-auto" : ""
         } `}
       >

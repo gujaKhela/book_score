@@ -10,7 +10,6 @@ import { useState } from "react";
 export const Details = () => {
   const { id, src, title, authors, description, tempPrice, categories } =
     useParams();
-  console.log("categoriesssssssssssssssssss", categories);
   const [count, setCount] = useState(1);
   const [price, setPrice] = useState(tempPrice);
   const location = useLocation();

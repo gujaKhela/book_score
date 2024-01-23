@@ -22,8 +22,7 @@ const fetchData = async (search, orderBy, maxResults, printType, subject) => {
   const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${queryParam}&orderBy=${orderBy}&maxResults=${maxResults}${printTypeParam}&key=${import.meta.env.VITE_API_KEY}`;
 
   try {
-    console.log("API Request URL:", apiUrl);
-
+    
     const resp = await fetch(apiUrl);
     if (!resp.ok) {
       throw new Error("Network request failed");

@@ -5,7 +5,6 @@ import bookBackupImage from "../../assets/bookBackup.webp";
 const Book = ({ id, src, title, authors, description, categories }) => {
  
  
-  console.log(src, "src");
   const navigate = useNavigate();
   const tempPrice = 15;
   const handleClick = () => {

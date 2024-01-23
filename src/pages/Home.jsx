@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BookGif from "../assets/book-gif.png";
-import Rectangle from "../assets/Rectangle 9.webp";
+import Rectangle from "../assets/Rectangle 9.webp"
 import { PiBinoculars } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import Slider from "../components/shared/Slider";
