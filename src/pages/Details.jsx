@@ -5,7 +5,7 @@ import { GrFormPrevious } from "react-icons/gr";
 import Slider from "../components/shared/Slider";
 import bookBackup from "../assets/bookBackup.webp";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Details = () => {
   const { id, src, title, authors, description, tempPrice, categories } =
@@ -14,6 +14,14 @@ export const Details = () => {
   const [price, setPrice] = useState(tempPrice);
   const location = useLocation();
   const navigate = useNavigate();
+  const [cart, setCart] = useState([]);
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  // Load cart from local storage when the component mounts
+  useEffect(() => {
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(existingCart);
+  }, []);
 
   if (!id || !title || !authors || !description) {
     // Handle the case where state is not available
@@ -37,6 +45,45 @@ export const Details = () => {
     setCount((prevCount) => prevCount + 1);
     setPrice(() => tempPrice * (count + 1));
   };
+
+  const addToCart = (cartItem) => {
+    setButtonClicked(true);
+  
+    // Check if the item with the same id is already in the cart
+    const existingCartItemIndex = cart.findIndex((item) => item.id === cartItem.id);
+  
+    if (existingCartItemIndex !== -1) {
+      // If the item already exists, update the count
+      setCart((prevCart) => {
+        const updatedCart = prevCart.map((item, index) => {
+          if (index === existingCartItemIndex) {
+            return {
+              ...item,
+              count: item.count + 1,
+            };
+          }
+          return item;
+        });
+  
+        // Update local storage
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+  
+        return updatedCart;
+      });
+    } else {
+      // If the item does not exist, add it to the cart
+      setCart((prevCart) => {
+        const updatedCart = [...prevCart, cartItem];
+  
+        // Update local storage
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+  
+        return updatedCart;
+      });
+    }
+  };
+  
+  
 
 
   return (
@@ -96,7 +143,18 @@ export const Details = () => {
                       readOnly
                     />
                   </div>
-                  <button className="w-64 h-10 bg-yellow-500 rounded-full hover:bg-yellow-400">
+                  <button
+                    className="w-64 h-10 bg-yellow-500 rounded-full hover:bg-yellow-400"
+                    onClick={() =>
+                      addToCart({
+                        title: title,
+                        authors: authors,
+                        price: price,
+                        count: count,
+                        id: id,
+                      })
+                    }
+                  >
                     <BsCart size={28} className="mx-auto" />
                   </button>
                 </div>
