@@ -1,24 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../assets/LOGO.png";
-import BookMark from "../../assets/BOOKMARK_SIMPLE.png";
-import shoppingCart from "../../assets/SHOPPING_CART.png";
 import { BsBookmark } from "react-icons/bs";
-
 import { Link } from "react-router-dom";
 import SidePanel from "./SidePanel";
 import { BsCart } from "react-icons/bs";
 
-
 const Header = () => {
   const [openCart, setOpenCart] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
+
+  useEffect(() => {
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItemCount(existingCart.length);
+  }, [openCart]);
 
   function handleCartOpen() {
     setOpenCart(true);
-    console.log(openCart);
   }
 
-  function closeSidePanel () {
-        setOpenCart(false)
+  function closeSidePanel() {
+    setOpenCart(false);
   }
 
   return (
@@ -31,13 +32,16 @@ const Header = () => {
         </div>
         <div className="flex items-center	">
           <BsBookmark size={24} className="mx-5" />
-          {/* <img src={BookMark} alt="BookMark" className="w-4 h-6 mx-5" /> */}
-          <button onClick={handleCartOpen}>
+          <button onClick={handleCartOpen} className="relative">
             <BsCart size={26} />
-            {/* <img src={shoppingCart} alt="shopping Cart" className="w-7 h-6" /> */}
+            {cartItemCount > 0 && (
+              <span className="bg-red-500 rounded-full w-4 h-4 text-white absolute top-0 right-0 -mt-2 -mr-2 flex items-center justify-center">
+                {cartItemCount}
+              </span>
+            )}
           </button>
         </div>
-        {openCart ? <SidePanel closeSidePanel={closeSidePanel}/> : null}
+        {openCart ? <SidePanel closeSidePanel={closeSidePanel} /> : null}
       </div>
     </>
   );

@@ -2,15 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import bookBackupImage from "../../assets/bookBackup.webp";
 
-const Book = ({ id, src, title, authors, description, categories }) => {
- 
+const Book = ({ id, src, title, authors, description, categories, }) => {
  
   const navigate = useNavigate();
-  const tempPrice = 15;
+  
   const handleClick = () => {
     const url = `/details/${id}/${encodeURIComponent(
       src
-    )}/${title}/${authors}/${description}/${tempPrice}/${categories}`;
+    )}/${title}/${authors}/${description}/${categories}`;
     navigate(url);
   };
 

@@ -1,90 +1,31 @@
 import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
-import { BsCart } from "react-icons/bs";
 import { GrFormPrevious } from "react-icons/gr";
 import Slider from "../components/shared/Slider";
 import bookBackup from "../assets/bookBackup.webp";
+import { useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Cart } from "../components/shared/Cart";
+import CountControl from "../components/shared/CountControl";
 
 export const Details = () => {
-  const { id, src, title, authors, description, tempPrice, categories } =
+  const { id, src, title, authors, description, categories } =
     useParams();
+  const onePeasePrice = 15;
   const [count, setCount] = useState(1);
-  const [price, setPrice] = useState(tempPrice);
+  const [price, setPrice] = useState(onePeasePrice);
   const location = useLocation();
   const navigate = useNavigate();
-  const [cart, setCart] = useState([]);
-  const [buttonClicked, setButtonClicked] = useState(false);
-
-  // Load cart from local storage when the component mounts
-  useEffect(() => {
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(existingCart);
-  }, []);
 
   if (!id || !title || !authors || !description) {
     // Handle the case where state is not available
     return <div>Error: Details not available</div>;
   }
-
   const handleBack = () => {
     navigate(-1, { state: location.state });
   };
 
   document.title = title;
-
-  const decrement = () => {
-    if (count > 1) {
-      setCount((prevCount) => prevCount - 1);
-      setPrice(() => tempPrice * (count - 1));
-    }
-  };
-
-  const increment = () => {
-    setCount((prevCount) => prevCount + 1);
-    setPrice(() => tempPrice * (count + 1));
-  };
-
-  const addToCart = (cartItem) => {
-    setButtonClicked(true);
-  
-    // Check if the item with the same id is already in the cart
-    const existingCartItemIndex = cart.findIndex((item) => item.id === cartItem.id);
-  
-    if (existingCartItemIndex !== -1) {
-      // If the item already exists, update the count
-      setCart((prevCart) => {
-        const updatedCart = prevCart.map((item, index) => {
-          if (index === existingCartItemIndex) {
-            return {
-              ...item,
-              count: item.count + 1,
-            };
-          }
-          return item;
-        });
-  
-        // Update local storage
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-  
-        return updatedCart;
-      });
-    } else {
-      // If the item does not exist, add it to the cart
-      setCart((prevCart) => {
-        const updatedCart = [...prevCart, cartItem];
-  
-        // Update local storage
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-  
-        return updatedCart;
-      });
-    }
-  };
-  
-  
-
 
   return (
     <>
@@ -143,47 +84,28 @@ export const Details = () => {
                       readOnly
                     />
                   </div>
-                  <button
-                    className="w-64 h-10 bg-yellow-500 rounded-full hover:bg-yellow-400"
-                    onClick={() =>
-                      addToCart({
-                        title: title,
-                        authors: authors,
-                        price: price,
-                        count: count,
-                        id: id,
-                      })
-                    }
-                  >
-                    <BsCart size={28} className="mx-auto" />
-                  </button>
+
+                  <Cart
+                    title={title}
+                    authors={authors}
+                    price={price}
+                    count={count}
+                    id={id}
+                    src={src}
+                  />
                 </div>
 
                 <div>
-                  <div className="flex items-center">
-                    <button
-                      onClick={decrement}
-                      className=" outline rounded-full mx-6 p-1 w-6 h-6 grid content-center hover:bg-red-500"
-                    >
-                      -
-                    </button>
-                    <input
-                      type="text"
-                      value={count}
-                      readOnly
-                      className="w-10 h-8 text-xl outline rounded-md text-center"
-                    />
-
-                    <button
-                      onClick={increment}
-                      className="outline rounded-full mx-6 p-1 w-6 h-6 grid content-center hover:bg-green-500 "
-                    >
-                      +
-                    </button>
-                  </div>
+                  <CountControl
+                    count={count}
+                    price={price}
+                    setCount={setCount}
+                    setPrice={setPrice}
+                    onePeasePrice={onePeasePrice}
+                  />
 
                   <button className="w-64 h-10 bg-orange-500 rounded-full mt-6 text-lg font-medium hover:bg-orange-400">
-                    Buy Now
+                     Buy Now
                   </button>
                 </div>
               </div>

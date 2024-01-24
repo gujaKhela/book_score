@@ -3,7 +3,7 @@ import { PiFolderOpenBold } from "react-icons/pi";
 import fetchData from "../../api/fetchData";
 import Slider from "../shared/Slider";
 
-const  BookCategories = () => {
+const BookCategories = () => {
   const [clickCategory, setClickCategory] = useState("");
 
   const categories = [
@@ -50,10 +50,10 @@ const  BookCategories = () => {
       </div>
       <div className="mt-40">
         <Slider
-          subject={clickCategory ||"Comedy"}
+          subject={clickCategory || "Comedy"}
           maxResult={12}
           orderBY="newest"
-          sliderTitle={clickCategory ||"Comedy"}
+          sliderTitle={clickCategory || "Comedy"}
         />
       </div>
     </>

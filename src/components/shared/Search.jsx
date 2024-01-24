@@ -6,6 +6,7 @@ import fetchData from "../../api/fetchData";
 // import { SearchedCatalog } from "../SearchedCatalog";
 import bookBackupImage from "../../assets/bookBackup.webp";
 import { BsCart } from "react-icons/bs";
+import { Cart } from "./Cart";
 
 const Search = ({ filter }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -135,6 +136,8 @@ const Search = ({ filter }) => {
                           null
                         : null
                     }
+          
+
                   />
                 ))
               ) : (
@@ -176,13 +179,25 @@ const Search = ({ filter }) => {
                   </div>
                   <div className="flex justify-between m-2">
                     <div>
-                      <div className="w-20 h-8 px-4  inline-block outline outline-gray-300 rounded-xl text-2xl font-semibold">$ 15</div>
+                      <div className="w-20 h-8 px-4  inline-block outline outline-gray-300 rounded-xl text-2xl font-semibold">
+                        $ 15
+                      </div>
                     </div>
                     <div>
-                      <div className="bg-yellow-500 outline w-20 h-8 outline-gray-300 rounded-xl ">
+                      <Cart
+                        title={search.title}
+                        authors={search.a}
+                        price={15}
+                        count={1}
+                        id={search.id}
+                        src={
+                          search.volumeInfo.imageLinks
+                          ? search.volumeInfo.imageLinks.thumbnail ||
+                            search.volumeInfo.imageLinks.smallThumbnail
+                          : bookBackupImage
+                        }
+                      />
 
-                      <BsCart size={26} className="m-auto "/>
-                      </div>
                     </div>
                   </div>
                 </div>

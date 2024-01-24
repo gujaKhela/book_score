@@ -63,7 +63,6 @@ const Slider = ({
     fetchNewestData();
   }, [subject]);
 
-
   return (
     <div>
       {error ? (
@@ -102,6 +101,7 @@ const Slider = ({
                       : "no description to show"
                   }
                   categories={myData.volumeInfo.categories || "Uncategory"}
+         
                 />
               ))}
           </div>

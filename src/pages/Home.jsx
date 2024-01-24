@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BookGif from "../assets/book-gif.png";
-import Rectangle from "../assets/Rectangle 9.webp"
+import Rectangle from "../assets/Rectangle 9.webp";
 import { PiBinoculars } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import Slider from "../components/shared/Slider";
@@ -45,15 +45,15 @@ const Home = () => {
             </div>
           </div>
           {/* ------------------- */}
-          <div className="relative w-full h-full max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px]">
-            <div className="w-full h-full max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px]">
+          <div className="relative w-[196px] h-[200px]  max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px] 2xl:w-[484px] 2xl:h-[503px]">
+            <div className="w-[196px]   max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px]  h-[200px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px] 2xl:w-[484px] 2xl:h-[503px]">
               <img
                 src={Rectangle}
                 alt="Rectangle photo"
-                className="z-10 object-cover w-full h-full max-w-[484px] max-h-[503px]"
+                className="z-10 object-cover w-[196px] h-[200px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px] 2xl:w-[484px] 2xl:h-[503px]"
               />
             </div>
-            <div className="bg-blue-500 object-cover w-full h-full max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px] absolute -top-8 -left-8 rounded-bl-3xl rounded-tr-3xl z-[-1]"></div>
+            <div className="bg-blue-500 object-cover  max-w-[484px] max-h-[503px] md:w-[296px] md:h-[300px] w-[196px] h-[200px] lg:w-[290px] lg:h-[300px] xl:w-[484px] xl:h-[503px] 2xl:w-[484px] 2xl:h-[503px] absolute -top-8 -left-8 rounded-bl-md rounded-tr-md xl:rounded-bl-3xl xl:rounded-tr-3xl 2xl:rounded-bl-3xl 2xl:rounded-tr-3xl md:rounded-bl-xl md:rounded-tr-xl sm:rounded-bl-lg sm:rounded-tr-lg z-[-1]"></div>
           </div>
         </div>
 
